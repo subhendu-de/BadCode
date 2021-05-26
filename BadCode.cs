@@ -36,7 +36,7 @@ namespace Badcode
 
         private async Task<DateTime> GetAccountCreatedDate(Guid userId)
         {
-            // Logic
+            return await _userService.GetJoinedDate();
         }
     }
 }
