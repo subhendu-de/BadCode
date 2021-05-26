@@ -4,12 +4,12 @@ namespace Badcode
     /// <summary>
     /// Calculate interest
     /// </summary>
-    public class Class1
+    public class AccountInterestService
     {
-        public decimal Calculate(Guid userId, decimal amount, int type, decimal rate, int? years = null)
+        public async Task<decimal> Calculate(Guid userId, decimal amount, int type, decimal rate, int? years = null)
         {
             decimal result;
-            var accountCreatedDate = GetAccountCreatedDate(userId);
+            var accountCreatedDate = await GetAccountCreatedDate(userId);
             var isLoyalCustomer = accountCreatedDate < DateTime.UtcNow.AddYears(-5);
             if (isLoyalCustomer)
             {
@@ -33,10 +33,10 @@ namespace Badcode
             }
             return result;
         }
-        private DateTime GetAccountCreatedDate(Guid userId)
+
+        private async Task<DateTime> GetAccountCreatedDate(Guid userId)
         {
             // Logic
-            return DateTime.UtcNow.AddYears(-6);
         }
     }
 }
