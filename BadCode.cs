@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+
 namespace Badcode
 {
     /// <summary>
@@ -6,6 +8,13 @@ namespace Badcode
     /// </summary>
     public class AccountInterestService
     {
+        private readonly UserService _userService;
+
+        public AccountInterestService(UserService userService)
+        {
+            this._userService = userService;
+        }
+
         public async Task<decimal> Calculate(Guid userId, decimal amount, int type, decimal rate, int? years = null)
         {
             decimal result;
